@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Version>1.0.1</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>RedisMessagePipeline</PackageId>
-    <Version>1.0.0</Version>
     <Description>
       This Nuget package provides a robust solution for managing message pipelines with Redis. 
       It ensures that each message is handled once and in order, with a focus on high reliability and consistency across distributed systems. 

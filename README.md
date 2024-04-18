@@ -21,16 +21,23 @@ dotnet add package RedisMessagePipeline
 ### Configuration
 Configure the Redis client and pipeline settings in your application:
 
-```csharp
-using Microsoft.Extensions.Logging;
-using RedisMessagePipeline;
-using RedisMessagePipeline.Admin;
-using RedisMessagePipeline.Consumer;
-using RedisMessagePipeline.Factory;
-using RedLockNet.SERedis;
-using RedLockNet.SERedis.Configuration;
-using StackExchange.Redis;
+## Configure Services:
+In your application's startup configuration, register RedisPipelineFactory:
 
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Using an existing IConnectionMultiplexer instance:
+    services.AddRedisPipelineFactory(settings);
+
+    // Or, initiating a new IConnectionMultiplexer with a connection string:
+    services.AddRedisPipelineFactory(redisConnectionString, settings);
+}
+```
+
+## Manually create Facroty with Redis Database and LockerFactory
+
+```csharp
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:6379");
 RedLockMultiplexer lockMultiplexer = new RedLockMultiplexer(redis);
 IDatabase db = redis.GetDatabase();
@@ -38,7 +45,11 @@ IDatabase db = redis.GetDatabase();
 var loggerFactory = new LoggerFactory();
 RedLockFactory lockFactory = RedLockFactory.Create(new List<RedLockMultiplexer> { lockMultiplexer });
 RedisPipelineFactory factory = new RedisPipelineFactory(loggerFactory, lockFactory, db);
+```
 
+## Create Admin and Consumer
+
+```csharp
 var consumer = factory.CreateConsumer(new MyMessageHandler(), new RedisPipelineConsumerSettings("my-messages"));
 var admin = factory.CreateAdmin(new RedisPipelineAdminSettings("my-messages"));
 ```
@@ -70,4 +81,4 @@ await consumer.ExecuteAsync(CancellationToken.None);
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Support
-For support and contributions, please contact the package maintainer at `your_email@example.com`.
+For support and contributions, please contact the package maintainer at `coddicat@gmail.com`.
