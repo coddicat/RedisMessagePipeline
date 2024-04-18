@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>RedisMessagePipeline</PackageId>
+    <Version>1.0.0</Version>
+    <Description>
+      This Nuget package provides a robust solution for managing message pipelines with Redis. 
+      It ensures that each message is handled once and in order, with a focus on high reliability and consistency across distributed systems. 
+      The package is designed to handle failures gracefully, retrying message handling based on configurable policies or stopping the pipeline until manual intervention.
+    </Description>
+    <Copyright>Rodion Shlomo Solomonyk</Copyright>
+    <RepositoryUrl>https://github.com/coddicat/RedisMessagePipeline</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/coddicat/RedisMessagePipeline</PackageProjectUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Redis; Pipeline; Message; Consistency</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RedLock.net" Version="2.3.2" />
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
