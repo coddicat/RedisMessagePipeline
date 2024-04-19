@@ -25,7 +25,7 @@ namespace RedisMessagePipeline.Factory
         /// <summary>
         /// Creates a RedisPipelineConsumer with specific handler and settings.
         /// </summary>
-        public RedisPipelineConsumer CreateConsumer(IRedisPipelineHandler handler, RedisPipelineConsumerSettings settings)
+        public IRedisPipelineConsumer CreateConsumer(IRedisPipelineHandler handler, RedisPipelineConsumerSettings settings)
         {
             return new RedisPipelineConsumer(loggerFactory.CreateLogger<RedisPipelineConsumer>(), handler, settings, lockFactory, database);
         }
@@ -33,7 +33,7 @@ namespace RedisMessagePipeline.Factory
         /// <summary>
         /// Creates a RedisPipelineAdmin with specific settings.
         /// </summary>
-        public RedisPipelineAdmin CreateAdmin(RedisPipelineAdminSettings settings)
+        public IRedisPipelineAdmin CreateAdmin(RedisPipelineAdminSettings settings)
         {
             return new RedisPipelineAdmin(loggerFactory.CreateLogger<RedisPipelineAdmin>(), settings, lockFactory, database);
         }
